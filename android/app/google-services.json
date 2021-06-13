@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "189868696239",
+    "project_id": "adoptionapp-212d3",
+    "storage_bucket": "adoptionapp-212d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189868696239:android:b6681806bee8515e6bea5a",
+        "android_client_info": {
+          "package_name": "com.adoptionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189868696239-04ojjfba44oitgvutc27qb5hgbpnq18s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adoptionapp",
+            "certificate_hash": "78213490c2a481302cd65b535a162c77158edb4c"
+          }
+        },
+        {
+          "client_id": "189868696239-1vsibosdrkbvja0sf3p5tifqnlvpon1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsoNa8PWLGS3Ztika3qvLTRxMrhQPdp2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189868696239-1vsibosdrkbvja0sf3p5tifqnlvpon1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
