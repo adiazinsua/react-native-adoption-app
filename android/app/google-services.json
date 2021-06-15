@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "189868696239-04ojjfba44oitgvutc27qb5hgbpnq18s.apps.googleusercontent.com",
+          "client_id": "189868696239-v8aavrgf8fijin96fs4nuef224legve7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.adoptionapp",
-            "certificate_hash": "78213490c2a481302cd65b535a162c77158edb4c"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
