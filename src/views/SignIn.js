@@ -30,58 +30,56 @@ const SignIn = ({navigation}) => {
       onPress={() => {
         Keyboard.dismiss();
       }}>
-      <KeyboardAvoidingView style={{flex: 1}} behavior="height">
-        <View style={styles.container}>
-          <View style={styles.container1}>
-            <Image
-              style={styles.logo}
-              source={require('../../assets/images/hola2.jpg')}
+      <View style={styles.container}>
+        <View style={styles.container1}>
+          <Image
+            style={styles.logo}
+            source={require('../../assets/images/hola2.jpg')}
+          />
+          <Text style={styles.title}>Sign In</Text>
+        </View>
+
+        <View style={styles.formContainer}>
+          <Input
+            labelValue={email}
+            placeholderText="Email"
+            iconType="alternate-email"
+            onChangeText={onChangeEmail}
+          />
+
+          <Input
+            labelValue={password}
+            placeholderText="Password"
+            iconType="lock-outline"
+            secureTextEntry={true}
+            onChangeText={onChangePassword}
+          />
+          <Text style={styles.forgot}>Forgot?</Text>
+
+          <View style={styles.buttonContainer1}>
+            <MainButton
+              buttonTitle="Sign In"
+              onPress={() => login(email, password)}
             />
-            <Text style={styles.title}>Sign In</Text>
-          </View>
-
-          <View style={styles.formContainer}>
-            <Input
-              labelValue={email}
-              placeholderText="Email"
-              iconType="alternate-email"
-              onChangeText={onChangeEmail}
-            />
-
-            <Input
-              labelValue={password}
-              placeholderText="Password"
-              iconType="lock-outline"
-              secureTextEntry={true}
-              onChangeText={onChangePassword}
-            />
-            <Text style={styles.forgot}>Forgot?</Text>
-
-            <View style={styles.buttonContainer1}>
-              <MainButton
-                buttonTitle="Sign In"
-                onPress={() => login(email, password)}
-              />
-            </View>
-          </View>
-
-          <View style={styles.container2}>
-            <Text style={styles.simpleText}>Or login with...</Text>
-            <View style={styles.buttonContainer}>
-              <BrandButton
-                image={require('../../assets/images/google.png')}
-                onPress={() => googleLogin()}
-              />
-            </View>
-            <TouchableOpacity
-              style={styles.textContainer}
-              onPress={() => navigation.navigate('SignUp')}>
-              <Text style={styles.simpleText}>New to AdoptApp?</Text>
-              <Text style={styles.highlightText}>Register</Text>
-            </TouchableOpacity>
           </View>
         </View>
-      </KeyboardAvoidingView>
+
+        <View style={styles.container2}>
+          <Text style={styles.simpleText}>Or login with...</Text>
+          <View style={styles.buttonContainer}>
+            <BrandButton
+              image={require('../../assets/images/google.png')}
+              onPress={() => googleLogin()}
+            />
+          </View>
+          <TouchableOpacity
+            style={styles.textContainer}
+            onPress={() => navigation.navigate('SignUp')}>
+            <Text style={styles.simpleText}>New to AdoptApp?</Text>
+            <Text style={styles.highlightText}>Register</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
