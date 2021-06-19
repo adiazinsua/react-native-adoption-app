@@ -100,7 +100,7 @@ const Home = ({navigation}) => {
                       navigation.navigate('Detail', item, navigation)
                     }>
                     <Card
-                      image={item.image}
+                      image={item.petImg}
                       name={item.name}
                       age={item.age}
                       sex={item.sex}

@@ -11,27 +11,31 @@ import {
 } from 'react-native';
 import Input from '../components/Input';
 import MainButton from '../components/MainButton';
+
 import {AuthContext} from '../navigation/AuthProvider';
 
+import ImagePicker from 'react-native-image-crop-picker';
 import {Picker} from '@react-native-picker/picker';
 
+import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
 const AddPet = () => {
-  const {user, setUser} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
 
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [selectedSex, setSelectedSex] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedType, setSelectedType] = useState('');
-  const [breed, setBreed] = useState('');
   const [location, setLocation] = useState('');
 
   const [image, setImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [transferred, setTransferred] = useState(0);
 
   const submitPet = async () => {
-    //const imageUrl = await uploadImage();
+    const imageUrl = await uploadImage();
 
     firestore()
       .collection('pets')
@@ -43,6 +47,7 @@ const AddPet = () => {
         sex: selectedSex,
         size: selectedSize,
         location: location,
+        petImg: imageUrl,
       })
       .then(() => {
         console.log('Post Added!');
@@ -57,22 +62,85 @@ const AddPet = () => {
       });
   };
 
+  const choosePhotoFromLibrary = () => {
+    ImagePicker.openPicker({
+      width: 780,
+      height: 780,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      const imageUri = Platform.OS === 'ios' ? image.sourceURL : image.path;
+      setImage(imageUri);
+    });
+  };
+
+  const uploadImage = async () => {
+    if (image == null) {
+      return null;
+    }
+    const uploadUri = image;
+    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+
+    // Add timestamp to File Name
+    const extension = filename.split('.').pop();
+    const name = filename.split('.').slice(0, -1).join('.');
+    filename = name + Date.now() + '.' + extension;
+
+    setUploading(true);
+    setTransferred(0);
+
+    const storageRef = storage().ref(`photos/${filename}`);
+    const task = storageRef.putFile(uploadUri);
+
+    // Set transferred state
+    task.on('state_changed', taskSnapshot => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+
+      setTransferred(
+        Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
+          100,
+      );
+    });
+
+    try {
+      await task;
+
+      const url = await storageRef.getDownloadURL();
+
+      setUploading(false);
+      setImage(null);
+
+      // Alert.alert(
+      //   'Image uploaded!',
+      //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
+      // );
+      return url;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  };
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
       }}>
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
+        <View /* style={styles.imageContainer} */>
           {image != null ? (
             <View>
-              <Image source={{uri: image}} style={styles.imagePreview} />
-              <Text>hay foto</Text>
+              <Image source={{uri: image}} /* style={styles.imagePreview} */ />
             </View>
           ) : (
             <View
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <Button title="Pick an image from camera roll" />
+              <Button
+                title="Pick an image from camera roll"
+                onPress={choosePhotoFromLibrary}
+              />
             </View>
           )}
         </View>

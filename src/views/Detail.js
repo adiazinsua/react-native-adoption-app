@@ -1,25 +1,22 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity
-} from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import MaterialIcons  from "react-native-vector-icons/MaterialIcons";
-import MainButton from "../components/MainButton";
-import COLORS from "../const/colors";
+  TouchableOpacity,
+} from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MainButton from '../components/MainButton';
+import COLORS from '../const/colors';
 
-const Detail = ({ navigation, route }) => {
+const Detail = ({navigation, route}) => {
   const pet = route.params;
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/images/prueba/Child_face.jpg")}
-        style={styles.image}
-      >
+      <ImageBackground source={{uri: pet.petImg}} style={styles.image}>
         <View style={styles.header}>
           <AntDesign
             name="back"
@@ -35,31 +32,30 @@ const Detail = ({ navigation, route }) => {
         </TouchableOpacity>
         <Text
           style={{
-            width: "70%",
+            width: '70%',
             fontSize: 30,
-            fontWeight: "bold",
+            fontWeight: 'bold',
             color: COLORS.secondary,
-            padding: 20
-          }}
-        >
+            padding: 20,
+          }}>
           {pet.name}
         </Text>
 
-        <View style={{ marginHorizontal: 20 }}>
-          <View style={{ flexDirection: "row", marginBottom: 15 }}>
+        <View style={{marginHorizontal: 20}}>
+          <View style={{flexDirection: 'row', marginBottom: 15}}>
             <MaterialIcons
               name="location-on"
               size={30}
               color={COLORS.secondary}
             />
-            <Text style={{ fontWeight: "bold", fontSize: 18, paddingLeft: 5 }}>
+            <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 5}}>
               {pet.location}
             </Text>
           </View>
-          <Text style={{ fontWeight: "bold", fontSize: 18, marginBottom: 10 }}>
+          <Text style={{fontWeight: 'bold', fontSize: 18, marginBottom: 10}}>
             Description
           </Text>
-          <Text style={{ fontSize: 16 }}>
+          <Text style={{fontSize: 16}}>
             Little Timmy was a villager who first appeared in Warcraft III:
             Reign of Chaos. He was a young boy and son of Alicia. Prince Arthas
             rescued Timmy at the behest of his mother.
@@ -68,12 +64,11 @@ const Detail = ({ navigation, route }) => {
 
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             marginHorizontal: 20,
-            marginVertical: 20
-          }}
-        >
+            marginVertical: 20,
+          }}>
           <View style={styles.smallContainer}>
             <Text style={styles.infoText}>{pet.age}</Text>
             <Text style={styles.titleText}>Age</Text>
@@ -91,7 +86,7 @@ const Detail = ({ navigation, route }) => {
             <Text style={styles.titleText}>Age</Text>
           </View>
         </View>
-        <View style={{ alignItems: "center" }}>
+        <View style={{alignItems: 'center'}}>
           <MainButton buttonTitle="Contactar" />
         </View>
       </View>
@@ -101,50 +96,50 @@ const Detail = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   imageContainer: {
-    backgroundColor: "red"
+    backgroundColor: 'red',
   },
   image: {
     flex: 0.7,
-    width: "100%",
-    height: 300
+    width: '100%',
+    height: 300,
   },
   header: {
     marginTop: 25,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
   imageDetails: {
     padding: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    position: "absolute",
-    bottom: 10
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    position: 'absolute',
+    bottom: 10,
   },
   favIcon: {
     backgroundColor: COLORS.white,
     borderColor: COLORS.primary,
     borderWidth: 2,
     borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 50,
     width: 50,
     elevation: 2,
-    position: "absolute",
+    position: 'absolute',
     top: -25,
-    alignSelf: "flex-end",
-    right: 25
+    alignSelf: 'flex-end',
+    right: 25,
   },
   descContainer: {
     backgroundColor: COLORS.white,
     flex: 1,
     borderTopStartRadius: 20,
-    borderTopEndRadius: 20
+    borderTopEndRadius: 20,
   },
   smallContainer: {
     backgroundColor: COLORS.white,
@@ -154,18 +149,18 @@ const styles = StyleSheet.create({
 
     width: 75,
     height: 55,
-    justifyContent: "center",
-    alignItems: "baseline",
-    padding: 12
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    padding: 12,
   },
   infoText: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 14,
-    color: "grey"
+    color: 'grey',
   },
   titleText: {
-    color: "#ACACAC"
-  }
+    color: '#ACACAC',
+  },
 });
 
 export default Detail;

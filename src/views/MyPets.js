@@ -7,12 +7,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Card from '../components/Card';
-import FlatListData from '../../data/FlatListData';
 import firestore from '@react-native-firebase/firestore';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const MyPets = ({navigation}) => {
-  const {user, setUser} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
   const [loading, setLoading] = useState(true); // Set loading to true on component mount
   const [pets, setPets] = useState([]); // Initial empty array of users
 
@@ -51,7 +50,7 @@ const MyPets = ({navigation}) => {
             style={{backgroundColor: 'white'}}
             onPress={() => navigation.navigate('Detail', item, navigation)}>
             <Card
-              image={item.image}
+              image={item.petImg}
               name={item.name}
               age={item.age}
               sex={item.sex}

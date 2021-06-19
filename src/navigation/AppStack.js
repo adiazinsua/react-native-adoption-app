@@ -65,7 +65,8 @@ const AppStack = () => {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: COLORS.primary,
-      }}>
+      }}
+      initialRouteName="Home">
       <Tab.Screen
         name="My Pets"
         component={PetStack}
