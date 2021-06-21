@@ -14,6 +14,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/core';
 import MyPets from '../views/MyPets';
+import Messages from '../views/Messages';
+import Chat from '../views/Chat';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,6 +32,22 @@ const FeedStack = ({navigation}) => {
         name="AddPet"
         component={AddPet}
         options={{headerShown: true, title: 'Add a pet'}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const MessagesStack = ({navigation}) => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Messages" component={Messages} />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{headerShown: true, title: 'Chat'}}
       />
     </Stack.Navigator>
   );
@@ -91,7 +109,7 @@ const AppStack = () => {
       />
       <Tab.Screen
         name="Messages"
-        component={FeedStack}
+        component={MessagesStack}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
           // Or Hide tabbar when push!
